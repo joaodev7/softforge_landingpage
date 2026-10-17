@@ -1,26 +1,136 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+/* ==========================================================
+   Design tokens — SoftForge (Guia de Marca Oficial: Azul & Branco)
+   Paleta:
+   - Azul Principal: #0066FF | Azul Marca: #0750B5 | Palatinate: #2A3EF4
+   - Azul Escuro:    #0B1F44 | Fundo Profundo: #050D1F / #07132B
+   - Branco:         #FFFFFF | White Blue: #E4E5F2
+   - Cinza Técnico:  #A0A7B8
+   Contraste verificado (WCAG 2.2 AA) em todos os pares texto/fundo.
+   ========================================================== */
+@theme {
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-montserrat), var(--font-inter), ui-sans-serif, sans-serif;
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+  --color-ink-950: #050d1f;
+  --color-ink-900: #0b1f44;
+  --color-ink-850: #0f2957;
+  --color-ink-800: #16356d;
+  --color-ink-700: #234785;
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  --color-brand-300: #93c5fd;
+  --color-brand-400: #60a5fa;
+  --color-brand-500: #0066ff;
+  --color-brand-600: #0750b5;
+  --color-brand-700: #063f8f;
+  --color-palatinate: #2a3ef4;
+  --color-cyan-glow: #38bdf8;
+
+  --color-text: #ffffff;
+  --color-subtle: #e4e5f2;
+  --color-muted: #a0a7b8;
+
+  --radius-card: 1.25rem;
+
+  --animate-float: float 6s ease-in-out infinite;
+
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
+    color-scheme: dark;
+  }
+
+  body {
+    @apply bg-ink-950 text-text font-sans antialiased;
+    background-image: radial-gradient(ellipse 80% 50% at 50% -15%, rgb(0 102 255 / 0.22), transparent 70%);
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-display tracking-tight text-white;
+  }
+
+  ::selection {
+    @apply bg-brand-500 text-white;
+  }
+
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-brand-400;
+  }
+}
+
+@layer components {
+  .container-page {
+    @apply mx-auto w-full max-w-7xl px-5 sm:px-8;
+  }
+
+  .text-gradient {
+    @apply bg-gradient-to-r from-brand-300 via-cyan-glow to-brand-400 bg-clip-text text-transparent;
+  }
+
+  .bg-grid {
+    background-image:
+      linear-gradient(to right, rgb(160 167 184 / 0.08) 1px, transparent 1px),
+      linear-gradient(to bottom, rgb(160 167 184 / 0.08) 1px, transparent 1px);
+    background-size: 56px 56px;
+    mask-image: radial-gradient(ellipse at center, black 35%, transparent 78%);
+  }
+
+  .card {
+    @apply rounded-[var(--radius-card)] border border-white/10 bg-ink-900/65 backdrop-blur;
+  }
+
+  .field {
+    @apply w-full rounded-xl border border-white/15 bg-ink-950/80 px-4 py-3 text-white placeholder:text-slate-400 transition-colors focus:border-brand-400 focus:outline-none focus:ring-2 focus:ring-brand-400/40 aria-[invalid=true]:border-red-400;
+  }
+}
+
+/* Revelação ao rolar sem JavaScript (progressive enhancement). */
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    .reveal {
+      animation: reveal linear both;
+      animation-timeline: view();
+      animation-range: entry 0% cover 25%;
+    }
+  }
+}
+
+@keyframes reveal {
+  from {
+    opacity: 0;
+    transform: translateY(32px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }

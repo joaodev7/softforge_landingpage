@@ -30,5 +30,13 @@
     ".next/dev/types/**/*.ts",
     "**/*.mts"
   ],
-  "exclude": ["node_modules"]
+  "exclude": [
+    "node_modules",
+    "catchVagas",
+    "Design - Docs",
+    "Design - docs",
+    "Praxis - docs",
+    "playwright-report",
+    "test-results"
+  ]
 }
