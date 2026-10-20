@@ -1,0 +1,2 @@
+# Cloudflare Worker environment variables for local testing with wrangler dev
+NEXTJS_ENV=development
