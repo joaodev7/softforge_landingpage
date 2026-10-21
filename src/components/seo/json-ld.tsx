@@ -1,6 +1,6 @@
-import { faqs, projects, services, siteConfig } from "@/lib/site";
+﻿import { faqs, projects, services, siteConfig } from "@/lib/site";
 
-/** Dados estruturados (schema.org) para rich results no Google. */
+/** Dados estruturados (schema.org) para rich results no Google e SEO Local. */
 export function JsonLd() {
   const data = {
     "@context": "https://schema.org",
@@ -18,7 +18,8 @@ export function JsonLd() {
         sameAs: Object.values(siteConfig.social),
         address: {
           "@type": "PostalAddress",
-          addressLocality: siteConfig.city,
+          addressLocality: "Fortaleza",
+          addressRegion: "CE",
           addressCountry: "BR",
         },
       },
@@ -34,7 +35,34 @@ export function JsonLd() {
         "@type": "ProfessionalService",
         name: siteConfig.name,
         url: siteConfig.url,
-        areaServed: "BR",
+        telephone: siteConfig.phoneDisplay,
+        priceRange: "$$",
+        image: `${siteConfig.url}/opengraph-image`,
+        address: {
+          "@type": "PostalAddress",
+          addressLocality: "Fortaleza",
+          addressRegion: "CE",
+          addressCountry: "BR",
+        },
+        geo: {
+          "@type": "GeoCoordinates",
+          latitude: -3.7319,
+          longitude: -38.5267,
+        },
+        areaServed: [
+          {
+            "@type": "City",
+            name: "Fortaleza",
+          },
+          {
+            "@type": "State",
+            name: "Ceará",
+          },
+          {
+            "@type": "Country",
+            name: "Brasil",
+          },
+        ],
         provider: { "@id": `${siteConfig.url}/#organization` },
         hasOfferCatalog: {
           "@type": "OfferCatalog",
@@ -67,7 +95,6 @@ export function JsonLd() {
   return (
     <script
       type="application/ld+json"
-      // Conteúdo estático controlado por nós; escapamos "<" para evitar quebra do script.
       dangerouslySetInnerHTML={{ __html: JSON.stringify(data).replace(/</g, "\\u003c") }}
     />
   );

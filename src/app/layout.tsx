@@ -1,4 +1,4 @@
-import type { Metadata, Viewport } from "next";
+﻿import type { Metadata, Viewport } from "next";
 import { Inter, Montserrat } from "next/font/google";
 import { siteConfig } from "@/lib/site";
 import "./globals.css";
@@ -25,15 +25,18 @@ export const metadata: Metadata = {
   description: siteConfig.description,
   applicationName: siteConfig.name,
   keywords: [
-    "fábrica de software",
+    "fábrica de software em Fortaleza",
+    "fábrica de software Ceará",
     "desenvolvimento de software sob medida",
-    "criação de landing page",
-    "desenvolvimento de sites",
-    "sistemas web e APIs",
+    "desenvolvimento de sistemas em Fortaleza",
+    "criação de landing page Fortaleza",
+    "criação de sites e aplicativos Fortaleza",
+    "sistemas web e APIs sob demanda",
     "SaaS B2B",
     "PRAXIS segurança dos alimentos",
     "catchVagas",
-    "SoftForge",
+    "SoftForge Fortaleza",
+    "SoftForge Tecnologia",
   ],
   authors: [{ name: siteConfig.name, url: siteConfig.url }],
   creator: siteConfig.name,
@@ -72,7 +75,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
           href="#conteudo"
           className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-lg focus:bg-brand-500 focus:px-4 focus:py-2 focus:font-semibold focus:text-white"
         >
-          Pular para o conteúdo
+          Pular para o conteÃºdo
         </a>
         {children}
       </body>

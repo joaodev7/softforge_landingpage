@@ -1,8 +1,8 @@
-/**
- * Centralização e validação de variáveis de ambiente (.env).
+﻿/**
+ * CentralizaÃ§Ã£o e validaÃ§Ã£o de variÃ¡veis de ambiente (.env).
  *
- * - `publicEnv`: variáveis públicas (`NEXT_PUBLIC_*`) seguras para Server e Client Components.
- * - `getServerEnv()`: variáveis exclusivas de servidor (chaves de API, webhooks, rate limit).
+ * - `publicEnv`: variÃ¡veis pÃºblicas (`NEXT_PUBLIC_*`) seguras para Server e Client Components.
+ * - `getServerEnv()`: variÃ¡veis exclusivas de servidor (chaves de API, webhooks, rate limit).
  */
 
 const str = (val: string | undefined, fallback: string): string => {
@@ -17,19 +17,19 @@ const num = (val: string | undefined, fallback: number): number => {
 };
 
 export const publicEnv = {
-  siteUrl: str(process.env.NEXT_PUBLIC_SITE_URL, "https://softforge.com.br"),
+  siteUrl: str(process.env.NEXT_PUBLIC_SITE_URL, "https://softforge.dev.br"),
   companyName: str(process.env.NEXT_PUBLIC_COMPANY_NAME, "SoftForge"),
   companyLegalName: str(
     process.env.NEXT_PUBLIC_COMPANY_LEGAL_NAME,
     "SoftForge Tecnologia LTDA",
   ),
   companyCnpj: str(process.env.NEXT_PUBLIC_COMPANY_CNPJ, "00.000.000/0001-00"),
-  contactEmail: str(process.env.NEXT_PUBLIC_CONTACT_EMAIL, "contato@softforge.com.br"),
-  founderName: str(process.env.NEXT_PUBLIC_FOUNDER_NAME, "João Vitor P. Andrade"),
-  founderEmail: str(process.env.NEXT_PUBLIC_FOUNDER_EMAIL, "joao@softforge.com.br"),
+  contactEmail: str(process.env.NEXT_PUBLIC_CONTACT_EMAIL, "contato@softforge.dev.br"),
+  founderName: str(process.env.NEXT_PUBLIC_FOUNDER_NAME, "JoÃ£o Vitor P. Andrade"),
+  founderEmail: str(process.env.NEXT_PUBLIC_FOUNDER_EMAIL, "joao@softforge.dev.br"),
   phoneDisplay: str(process.env.NEXT_PUBLIC_PHONE_DISPLAY, "+55 (11) 90000-0000"),
   whatsappNumber: str(process.env.NEXT_PUBLIC_WHATSAPP_NUMBER, "5511900000000"),
-  city: str(process.env.NEXT_PUBLIC_CITY, "São Paulo, SP"),
+  city: str(process.env.NEXT_PUBLIC_CITY, "Fortaleza, CE"),
   instagramHandle: str(process.env.NEXT_PUBLIC_INSTAGRAM_HANDLE, "@softforge"),
   social: {
     linkedin: str(
@@ -55,11 +55,11 @@ export type ServerEnv = {
 };
 
 /**
- * Lê variáveis sensíveis apenas no servidor (Route Handlers / Server Actions).
+ * LÃª variÃ¡veis sensÃ­veis apenas no servidor (Route Handlers / Server Actions).
  */
 export function getServerEnv(): ServerEnv {
   if (typeof window !== "undefined") {
-    throw new Error("getServerEnv() só pode ser chamado no servidor.");
+    throw new Error("getServerEnv() sÃ³ pode ser chamado no servidor.");
   }
 
   const resendApiKey = process.env.RESEND_API_KEY?.trim() || null;
