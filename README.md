@@ -54,3 +54,30 @@ npm run dev          # http://localhost:3000
 | `npm run typecheck` | Checagem de tipos |
 | `npm run test:e2e` | Testes E2E + a11y (desktop e mobile) — requer `npm run build` antes |
 | `npm run verify` | Tudo acima em sequência |
+
+## Deploy com Docker
+
+O projeto está configurado com compilação `output: "standalone"` do Next.js e um `Dockerfile` multi-stage otimizado (Node.js 20 Alpine, usuário não-root `nextjs`, healthcheck integrado).
+
+### 1. Com Docker Compose (Recomendado)
+
+```bash
+# Sobe o container em background na porta 3000 lendo as variáveis do .env
+docker compose up -d --build
+
+# Ver logs
+docker compose logs -f
+
+# Parar container
+docker compose down
+```
+
+### 2. Com Docker CLI
+
+```bash
+# Build da imagem
+docker build -t softforge-landingpage .
+
+# Execução com variáveis do arquivo .env
+docker run -d --name softforge-landingpage -p 3000:3000 --env-file .env softforge-landingpage
+```
