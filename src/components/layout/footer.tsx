@@ -1,12 +1,10 @@
 import Link from "next/link";
-import { cacheLife } from "next/cache";
+
 import { Logo } from "@/components/ui/logo";
 import { navItems, projects, services, siteConfig } from "@/lib/site";
 
 /** Ano atual, cacheado por dia (Cache Components não permite `new Date()` sem cache). */
-async function CurrentYear() {
-  "use cache";
-  cacheLife("days");
+function CurrentYear() {
   return <>{new Date().getFullYear()}</>;
 }
 
