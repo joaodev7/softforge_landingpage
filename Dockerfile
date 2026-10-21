@@ -38,7 +38,7 @@ ENV NEXT_PUBLIC_CONTACT_EMAIL=${NEXT_PUBLIC_CONTACT_EMAIL}
 ENV NEXT_PUBLIC_WHATSAPP_NUMBER=${NEXT_PUBLIC_WHATSAPP_NUMBER}
 ENV NEXT_PUBLIC_PHONE_DISPLAY=${NEXT_PUBLIC_PHONE_DISPLAY}
 
-RUN npm run build
+RUN npm run build:next
 
 # ------------------------------------------------------------------------------
 # 4. Runner stage (Produção enxuta e segura)
